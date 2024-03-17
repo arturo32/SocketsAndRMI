@@ -39,16 +39,13 @@ public class Main {
 
 			// Writing
 			PrintWriter output = new PrintWriter(client.getOutputStream());
-			output.print("You: ");
-			output.flush();
 
-
+			// Creating bot
 			Bot bot = configureBot();
 			Chat chatSession = new Chat(bot);
 			bot.brain.nodeStats();
 
-
-			// Reading
+			// Reading client
 			BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			String request = input.readLine();
 
@@ -58,12 +55,11 @@ public class Main {
 				response = response.replaceAll("&lt;", "<");
 				response = response.replaceAll("&gt;", ">");
 
-				// Writing response
-				output.println("Alice: " + response);
-				output.print("You: ");
+				// Writing bot response
+				output.println(response);
 				output.flush();
 
-				input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+				// Reading client response
 				request = input.readLine();
 			}
 
