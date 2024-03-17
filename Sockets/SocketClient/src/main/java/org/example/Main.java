@@ -20,7 +20,8 @@ public class Main {
 			BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			BufferedReader clientReader = new BufferedReader(new InputStreamReader(System.in));
 
-			while(true) {
+			String response;
+			do {
 				// Reading from console
 				System.out.print("You: ");
 				String request = clientReader.readLine();
@@ -29,13 +30,11 @@ public class Main {
 				output.println(request);
 				output.flush();
 
-				if(request.equals("bye")) {
-					break;
-				}
-
 				// Receiving answer
-				System.out.println("Alice: " + input.readLine());
-			}
+				response = input.readLine();
+				System.out.println("Alice: " + response);
+
+			} while(!response.equals("bye"));
 
 			// Closing
 			output.close();

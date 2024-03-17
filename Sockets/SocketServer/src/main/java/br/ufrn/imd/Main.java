@@ -63,6 +63,9 @@ public class Main {
 				request = input.readLine();
 			}
 
+			output.println("bye");
+			output.flush();
+
 			// Closing
 			bot.writeQuit();
 			output.close();
