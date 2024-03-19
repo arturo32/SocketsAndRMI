@@ -29,10 +29,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		ServerSocket server;
 		try {
 			// Connecting to port 5431 with a TCP socket
-			server = new ServerSocket(PORT);
+			ServerSocket server = new ServerSocket(PORT);
 
 			// Waiting for client to accept connection
 			Socket client = server.accept();
