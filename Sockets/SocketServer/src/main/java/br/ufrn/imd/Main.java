@@ -29,25 +29,24 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		ServerSocket server;
 		try {
 			// Connecting to port 5431 with a TCP socket
-			server = new ServerSocket(PORT);
+			ServerSocket server = new ServerSocket(PORT);
 
 			// Waiting for client to accept connection
 			Socket client = server.accept();
 
-			// Writing
+			// Initialize output and input streams of the client
 			PrintWriter output = new PrintWriter(client.getOutputStream());
+			BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+			// Awaits client request
+			String request = input.readLine();
 
 			// Creating bot
 			Bot bot = configureBot();
 			Chat chatSession = new Chat(bot);
 			bot.brain.nodeStats();
-
-			// Reading client
-			BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			String request = input.readLine();
 
 			while(!request.equals("bye")) {
 				// Generating response
