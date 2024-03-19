@@ -36,17 +36,17 @@ public class Main {
 			// Waiting for client to accept connection
 			Socket client = server.accept();
 
-			// Creating bot
-			Bot bot = configureBot();
-			Chat chatSession = new Chat(bot);
-			bot.brain.nodeStats();
-
 			// Initialize output and input streams of the client
 			PrintWriter output = new PrintWriter(client.getOutputStream());
 			BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
 			// Awaits client request
 			String request = input.readLine();
+
+			// Creating bot
+			Bot bot = configureBot();
+			Chat chatSession = new Chat(bot);
+			bot.brain.nodeStats();
 
 			while(!request.equals("bye")) {
 				// Generating response
